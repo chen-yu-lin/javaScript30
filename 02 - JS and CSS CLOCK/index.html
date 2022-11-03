@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLOCK</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="clock">
+        <div class='face'>
+            <div class="hour hand"></div>
+            <div class="minute hand"></div>
+            <div class="second hand"></div>
+        </div>
+    </div>
+
+    <script>
+        const hour = document.querySelector('.hour');
+        const minute = document.querySelector('.minute');
+        const second = document.querySelector('.second');
+        
+        function rotate() {
+            const date = new Date() //获取时间
+
+            const Seconds = date.getSeconds() //获取秒数
+            second.style.transform = `rotate(${(Seconds*6)+90}deg)`
+
+            const Minutes = date.getMinutes() //获取分钟数
+            minute.style.transform = `rotate(${(Minutes+(Seconds/60))*6+90}deg)`
+
+            const Hours = date.getHours() //获取小时数
+            hour.style.transform = `rotate(${(Hours+(Minutes/60)+(Seconds/3600))*30+90}deg)`
+        }
+
+        setInterval(rotate,1000);
+    </script>
+</body>
+
+</html>
