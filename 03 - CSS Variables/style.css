@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    background-color: #193949;
+    font-size: 10px;
+}
+
+body{
+    font-size: 5rem;
+    text-align: center;
+    color: white;
+    font-weight: 300;
+}
+
+h1{
+    font-size: 7.5rem;
+    color: white;
+    text-align: center;
+    height: 24rem;
+    line-height: 24rem;
+}
+
+.color{
+    color:rgb(68, 0, 255);
+}
+
+div{
+    margin-bottom: 5rem;
+}
+
+input{
+    width: 10rem;
+}
+
+img{
+    background-color: yellow;
+    padding: 2rem;
+    filter: blur(1px);
+}

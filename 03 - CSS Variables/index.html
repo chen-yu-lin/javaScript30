@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Update CSS Variables with <span class="color">JS</span></h1>
+    <div>
+        <label>Spacing:</label>
+        <input type="range" min="10" max="200" name="spacing" value="5">
+        <label>Blur:</label>
+        <input type="range" min="1" max="10" name="blur" value="5">
+        <label for="bc">Base Color </label>
+        <input type="color" name="color" id="bc">
+    </div>
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+    <script>
+        const img = document.querySelector('img')
+        const spacing = document.querySelector('input[name="spacing"]')
+        const blur = document.querySelector('input[name="blur"]')
+        const color = document.querySelector('input[name="color"]')
+        console.log(img,spacing,blur,color)
+
+        spacing.addEventListener('change',function() {
+            img.style.padding = `${this.value}px`
+        })
+        blur.addEventListener('change',function() {
+            img.style.filter = `blur(${this.value}px)`
+        })
+        color.addEventListener('change',function() {
+            img.style.backgroundColor = `${this.value}`
+        })
+    </script>
+</body>
+
+</html>
