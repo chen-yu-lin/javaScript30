@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Array Cardio 💪</title>
+</head>
+
+<body>
+    <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+
+    <script>
+        //数组练习
+        const inventors = [
+            { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+            { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+            { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+            { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+            { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+            { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+            { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+            { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
+            { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
+            { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
+            { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+            { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
+        ];
+
+        const people = [
+            'Bernhard, Sandra', 'Bethea, Erin', 'Becker, Carl', 'Bentsen, Lloyd', 'Beckett, Samuel', 'Blake, William', 'Berger, Ric', 'Beddoes, Mick', 'Beethoven, Ludwig',
+            'Belloc, Hilaire', 'Begin, Menachem', 'Bellow, Saul', 'Benchley, Robert', 'Blair, Robert', 'Benenson, Peter', 'Benjamin, Walter', 'Berlin, Irving',
+            'Benn, Tony', 'Benson, Leana', 'Bent, Silas', 'Berle, Milton', 'Berry, Halle', 'Biko, Steve', 'Beck, Glenn', 'Bergman, Ingmar', 'Black, Elk', 'Berio, Luciano',
+            'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
+            'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
+        ];
+
+        const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+
+        //filter()
+        //1.从inventors中筛选出出生于16世纪的人
+        const arr1 = inventors.filter(item => (item.year >= 1500 && item.year <= 1600))
+        console.log(arr1)
+
+        //map()
+        //2.返回一个发明家姓和名的数组
+        const arr2 = inventors.map(item => `${item.first} ${item.last}`)
+        console.log(arr2)
+
+        //sort()
+        //3.把发明家按出生日期顺序排序，从老到小
+        const arr3 = inventors.sort((a, b) => a.year - b.year)
+        console.log(arr3)
+
+        //reduce()
+        //4.所有发明家的岁数总和
+        const total = inventors.reduce((total, age) => {
+            return total + (age.passed - age.year)
+        }, 0)
+        console.log(total)
+
+        //5.按年龄排序(从大到小)
+        const arr4 = inventors.sort((a, b) => {
+            return (b.passed - b.year) - (a.passed - a.year)
+        })
+        console.log(arr4)
+
+        //6.按姓氏字母排序
+        const arr5 = people.sort((a, b) => {
+            const [aLast, aFirst] = a.split(', ')
+            const [bLast, bFirst] = b.split(', ')
+            return aLast > bLast ? 1 : -1
+        })
+        console.log(arr5)
+
+        //7.总结data数组中每个实例的个数
+        const obj = data.reduce((obj,item) => {
+            if (!obj[item]) {
+                obj[item] = 0
+            }
+            obj[item]++
+            return obj
+        },{})
+        console.log(obj)
+    </script>
+</body>
+
+</html>
