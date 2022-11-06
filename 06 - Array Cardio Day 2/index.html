@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Cardio 💪💪</title>
+</head>
+
+<body>
+    <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+
+    <script>
+        const people = [
+            { name: 'Wes', year: 1988 },
+            { name: 'Kait', year: 1986 },
+            { name: 'Irv', year: 1970 },
+            { name: 'Lux', year: 2015 }
+        ];
+
+        const comments = [
+            { text: 'Love this!', id: 523423 },
+            { text: 'Super good', id: 823423 },
+            { text: 'You are the best', id: 2039842 },
+            { text: 'Ramen is my fav food ever', id: 123523 },
+            { text: 'Nice Nice Nice!', id: 542328 }
+        ];
+
+        //some()
+        //1.至少有一个人是大于或等于19岁？
+        const isAdult = people.some(item => new Date().getFullYear() - item.year >=19)
+        console.log({isAdult})
+
+        //every()
+        //2.每个人都大于或等于19岁？
+        const allAdults = people.every(item => new Date().getFullYear() - item.year >=19)
+        console.log({allAdults})
+
+        //find()
+        //3.找到id：823423的注释
+        const comment = comments.find(item => item.id === 823423)
+        console.log(comment)
+
+        //findIndex()
+        //4.找到id：823423的索引值
+        const index = comments.findIndex(item => item.id === 823423)
+        console.log(index)
+
+        //5.删除id：823423的注释
+        //slice()
+        const newComments1 = [...comments.slice(0,index),...comments.slice(index + 1)]
+        console.log(newComments1)
+
+        //splice() --会改变原数组
+        const newComments2 = comments.splice(index,1)
+        console.log(newComments2)
+        console.log(comments)
+    </script>
+</body>
+
+</html>
