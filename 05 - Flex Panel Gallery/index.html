@@ -40,8 +40,8 @@
     </div>
 
     <script>
-        const div = [...document.querySelectorAll('.box')]
-        div.map(item => {
+        const div = document.querySelectorAll('.box')
+        div.forEach(item => {
             item.onclick = function() {
                 item.classList.toggle('boxClick')
             }
