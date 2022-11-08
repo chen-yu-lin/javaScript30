@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form action="">
+        <input type="text" placeholder="诗句 诗名 诗人" id="search">
+        <ul id="suggestions">
+            <li>
+                <p>诗词</p>
+                <p>诗名-诗人</p>
+            </li>
+        </ul>
+    </form>
+
+    <script>
+        const poetry = []
+        fetch('https://gist.githubusercontent.com/soyaine/81399bb2b24ca1bb5313e1985533c640/raw/bdf7df2cbcf70706c4a5e51a7dfb8c933ed78878/TangPoetry.json')
+            .then(data => data.json())
+            .then(item => poetry.push(...item))
+        const search = document.getElementById('search')
+        const suggestions = document.getElementById('suggestions')
+        // console.log(search, suggestions)
+
+        //正则表达式
+        //filter()
+        function findMatches(word, poetry) {
+            return poetry.filter(item => {
+                const regex = new RegExp(word, 'gi') //全局搜索，不区分大小写
+                const author = item.detail_author.join('')
+                return item.detail_text.match(regex) || item.title.match(regex) || author.match(regex)
+            })
+        }
+        /* setTimeout(() => {
+            a = findMatches('王建', poetry)
+            console.log(a)
+        }, 2000) */
+
+        function displayMatches() {
+            const match = findMatches(this.value, poetry)
+            const regex = new RegExp(this.value, 'gi')
+            // console.log(match)
+            const html = match.map(item => {
+                //搜索值添加背景颜色
+                const text = item.detail_text.replace(regex, `<span>${this.value}</span>`)
+                const title = item.title.replace(regex, `<span>${this.value}</span>`)
+                const author = item.detail_author[0].replace(regex, `<span>${this.value}</span>`)
+
+                return `
+                    <li>
+                        <p>${text}</p>
+                        <p>${title} - ${author}</p>
+                    </li>
+                `
+            }).join('')
+
+            suggestions.innerHTML = html
+        }
+
+        search.addEventListener('change', displayMatches)
+        search.addEventListener('keyup', displayMatches)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgb(177, 247, 241) 0%,skyblue 100%) fixed;
+}
+
+form {
+    width: 50%;
+    margin: 50px auto;
+}
+
+input {
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 10px solid rgb(248, 248, 248);
+    box-shadow: inset 0 0 1px gray;
+    font-size: 2rem;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+}
+
+ul {
+    list-style-type: none;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1rem;
+    color: gray;
+    font-weight: 300;
+}
+
+ul>li {
+    height: 70px;
+    /* line-height: 60px; */
+    /* padding-left: 1em; */
+    text-align: center;
+    border-bottom: 1px solid #D8D8D8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+    color: black;
+}
+
+ul>li>p:nth-child(1){
+    margin-top: 10px;
+}
+
+ul>li>p:nth-child(2) {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 0.5rem;
+    color: gray;
+}
+
+ul>li:nth-of-type(odd) {
+    transform: perspective(100px) rotateX(-3deg) scale(1.001);
+    background: linear-gradient(to top,#efe,#fff);
+}
+
+ul>li:nth-of-type(even) {
+    transform: perspective(100px) rotateX(3deg) translateY(-0.5px);
+    background: linear-gradient(to bottom,#fff,#efe);
+}
+
+ul>li>p>span{
+    background-color: aqua!important;
+}
