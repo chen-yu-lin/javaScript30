@@ -13,29 +13,21 @@
     <h1>Update CSS Variables with <span class="color">JS</span></h1>
     <div>
         <label>Spacing:</label>
-        <input type="range" min="10" max="200" name="spacing" value="5">
+        <input type="range" min="10" max="200" value="100" name="padding" data-w="px">
         <label>Blur:</label>
-        <input type="range" min="1" max="10" name="blur" value="5">
+        <input type="range" min="1" max="10" name="blur" value="5" data-w="px">
         <label for="bc">Base Color </label>
-        <input type="color" name="color" id="bc">
+        <input type="color" name="backgroundColor" id="bc">
     </div>
     <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
     <script>
-        const img = document.querySelector('img')
-        const spacing = document.querySelector('input[name="spacing"]')
-        const blur = document.querySelector('input[name="blur"]')
-        const color = document.querySelector('input[name="color"]')
-        console.log(img,spacing,blur,color)
-
-        spacing.addEventListener('change',function() {
-            img.style.padding = `${this.value}px`
-        })
-        blur.addEventListener('change',function() {
-            img.style.filter = `blur(${this.value}px)`
-        })
-        color.addEventListener('change',function() {
-            img.style.backgroundColor = `${this.value}`
-        })
+        const input = document.querySelectorAll('div input')
+        function mouseMove() {
+            const suffix = this.dataset.w || ''
+            document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix)
+        }
+        input.forEach(item => item.addEventListener('change',mouseMove))
+        input.forEach(item => item.addEventListener('mousemove',mouseMove))
     </script>
 </body>
 

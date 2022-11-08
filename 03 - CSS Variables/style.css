@@ -3,6 +3,12 @@
     padding: 0;
 }
 
+:root{
+    --padding:2rem;
+    --backgroundColor:yellow;
+    --blur:1px    
+}
+
 html{
     background-color: #193949;
     font-size: 10px;
@@ -36,7 +42,7 @@ input{
 }
 
 img{
-    background-color: yellow;
-    padding: 2rem;
-    filter: blur(1px);
+    background-color: var(--backgroundColor);
+    padding: var(--padding);
+    filter: blur(var(--blur));
 }
