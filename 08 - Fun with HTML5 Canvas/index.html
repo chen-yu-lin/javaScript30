@@ -7,26 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML5 Canvas</title>
     <style>
-        html,
-        body {
+        *{
             margin: 0;
-            overflow: hidden;
+            padding: 0;
         }
 
         canvas {
             overflow: hidden;
+            border: 5px solid rgb(157, 142, 55);
+            display: block;
+            margin: 10px auto;
+        }
+
+        h1{
+            text-align: center;
+            color: hsl(41, 100%, 50%);
+        }
+
+        button{
+            display: block;
+            margin: 0 auto;
+            width: 100px;
+            height: 30px;
+            background:skyblue;
         }
     </style>
 </head>
 
 <body>
-    <canvas width="800" height="800"></canvas>
-
+    <h1>彩虹笔绘画板</h1>
+    <canvas width="800" height="500"></canvas>
+    <button id="clear">清空绘画板</button>
     <script>
         const canvas = document.querySelector('canvas')
         // console.log(canvas)
-        canvas.width = window.innerWidth
-        canvas.height =window.innerHeight
+        canvas.width = 3/4*window.innerWidth
+        canvas.height =3/4*window.innerHeight
         const ctx = canvas.getContext('2d')
 
         let isDraw = false
@@ -78,6 +94,15 @@
         canvas.addEventListener('mouseup', () => isDraw = false)
 
         canvas.addEventListener('mouseout', () => isDraw = false)
+
+        //清空绘画板
+        const clear = document.getElementById('clear')
+        clear.addEventListener('click',() => {
+            const w = canvas.width
+            const h = canvas.height
+            ctx.clearRect(0,0,w,h)
+        })
+
     </script>
 </body>
 
