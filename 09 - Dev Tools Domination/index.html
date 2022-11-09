@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>>Console Tricks!</title>
+</head>
+
+<body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+    <script>
+        const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+        function makeGreen() {
+            const p = document.querySelector('p');
+            p.style.color = '#BADA55';
+            p.style.fontSize = '50px';
+        }
+
+        /* log的用法 */
+        //1.%s
+        console.log('输出一个字符串%s', 'log')
+        //2.%d
+        console.log('输出一个整数%d', 2)
+        //3.%f
+        console.log('输出一个小数%f', 1.25)
+        //4.%c-设定输出样式，会影响后面输出
+        // console.log("%c不同样式的输出效果", "color: #00fdff; font-size: 2em;")
+
+        /* warning */
+        console.warn("三角感叹号图标，淡黄色背景")
+
+        /* Error */
+        console.error('红叉图标，红字红色背景')
+
+        /* Info */
+        console.info("蓝色圆形感叹号图标")
+
+        /* assert-接受一个表达式作为参数，如果参数返回值是 false，则会输出第二个参数中的内容 */
+        const p = document.querySelector('p')
+        console.assert(p.classList.contains('ouch'), 'That is wrong!')
+
+        /* clear */
+        console.clear()
+
+        /* 打印DOM元素 */
+        //1.log-输出这个 DOM 的 HTML 标签
+        console.log(p)
+        //2.dir-输出这个 DOM 元素的属性列表
+        console.dir(p)
+
+        console.clear()
+
+        /* Grouping together - 数据分组 */
+        //group - 展开列表
+        //groupCollspsed - 收起列表
+        dogs.forEach(dog => {
+            console.groupCollapsed(`${dog.name}`)
+            console.log(`This is ${dog.name}`)
+            console.log(`${dog.name} is ${dog.age} years old`)
+            console.log(`${dog.name} is ${dog.age * 7} dog years old`)
+            console.groupEnd(`${dog.name}`)
+        })
+
+        /* counting - 计数对象仅限于由 count() 输出的内容，并非所有 console 中的输出 */
+        console.count('Wes')
+        console.count('Wes')
+        console.count('Steve')
+        console.count('Steve')
+        console.count('Wes')
+        console.count('Steve')
+        console.count('Wes')
+        console.count('Steve')
+        console.count('Steve')
+        console.count('Steve')
+        console.count('Steve')
+        console.count('Steve')
+
+        /* table */
+        console.table(dogs)
+
+        /* timing */
+        console.time('fetching data');
+        fetch('https://api.github.com/users/wesbos')
+            .then(data => data.json())
+            .then(data => {
+                console.timeEnd('fetching data')
+                console.log(data)
+            });
+    </script>
+</body>
+
+</html>
