@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hold Shift and Check Checkboxes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="contain">
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>这是一个邮件收件箱</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>选中一项</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>然后按住 Shift 键</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>选择另外一项</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>它们之间的都会被选中</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>试着实现这个功能</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>只用原生 JS</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>Good Luck!</p>
+        </div>
+        <div class="box">
+            <input type="checkbox" class="">
+            <p>记得展示你的成果♪(^∇^*)</p>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('input')
+        const inputArr = Array.from(checkboxes)
+        let lastChecked
+        let onOff = false
+
+        //方法一
+        function shift(e) {
+            let inBetween = false
+            if (e.shiftKey && this.checked) {
+                checkboxes.forEach(input => {
+                    //判断复选框是否在两次勾选的复选框中间
+                    if (input === this || input === lastChecked) {
+                        inBetween = !inBetween
+                    }
+
+                    if (inBetween) {
+                        input.checked = true
+                    }
+                })
+            }
+            lastChecked = this
+        }
+
+        // checkboxes.forEach(input => input.addEventListener('click', shift))
+
+        //方法二
+        function shift2(e) {
+            if (!lastChecked) lastChecked = this
+            onOff = lastChecked.checked ? true : false //获取复选框勾选状态
+            if (e.shiftKey) {
+                let start = inputArr.indexOf(lastChecked)
+                let end = inputArr.indexOf(this)
+                //截取slice() -包左不包右
+                let newArr = inputArr.slice(Math.min(start, end), Math.max(start, end) + 1)
+                //对截取到的数组进行遍历
+                newArr.forEach(input => {
+                    input.checked = onOff
+                })
+            }
+            lastChecked = this
+        }
+        checkboxes.forEach(input => input.addEventListener('click', shift2))
+    </script>
+</body>
+
+</html>

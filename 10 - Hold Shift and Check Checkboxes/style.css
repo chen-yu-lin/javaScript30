@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(255, 208, 0);
+}
+
+.contain{
+    margin: 50px auto;
+    width: 400px;
+    background-color: white;
+    border-radius: 8px 0 8px 8px;
+    box-shadow: 10px 10px 0 rgb(0 0 0 / 10%);
+}
+
+.contain .box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.contain .box>input{
+    flex: 1;
+}
+
+.contain .box>p{
+    border-left: 1px solid skyblue;
+    height: 100%;
+    flex: 5;
+    line-height: 70px;
+    padding-left: 20px;
+}
+
+input:checked+p{
+    text-decoration: line-through;
+}
