@@ -38,3 +38,7 @@ body{
 input:checked+p{
     text-decoration: line-through;
 }
+
+input:focus{
+    outline: none;
+}
