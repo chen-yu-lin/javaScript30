@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //字符串、数字和布尔值
+        let age = 100
+        let age2 = age
+        console.log(age, age2)
+        age = 200
+        console.log(age, age2)
+
+        let name = 'Wes'
+        let name2 = name
+        console.log(name, name2)
+        name = 'wesley'
+        console.log(name, name2)
+
+        //数组
+        const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+        //引用
+        const team = players;
+        console.log(players, team);
+
+        //改变team会影响原数组
+        // team[3] = 3
+        // console.log(players,team)
+
+        //不影响原数组的方法
+        //slice()
+        const team2 = players.slice()
+        team2[3] = 3
+        console.log(team2, players)
+
+        //concat(),创建新数组，并将旧数组连接进去
+        const team3 = [].concat(players)
+        team3[2] = 2
+        console.log(players, team3)
+
+        //ES6扩展语法
+        const team4 = [...players]
+        team4[3] = 3
+        console.log(players, team4)
+
+        //Array.from()
+        const team5 = Array.from(players)
+        team5[3] = 3
+        console.log(players, team5)
+
+        //map()
+        const team6 = players.map(item => item)
+        team6[3] = 3
+        console.log(players, team6)
+
+        //遍历后使用push()
+        let team7 = []
+        players.forEach(item => {
+            team7.push(item)
+        })
+        team7[3] = 3
+        console.log(team7, players)
+
+        //对象
+        const person = {
+            name: 'Wes Bos',
+            age: 80
+        }
+
+        //不改变原对象方法
+        //assign()-后来的源对象的属性值，将会覆盖它之前的对象的属性
+        const cap2 = Object.assign({}, person, { number: 99, age: 12 })
+        console.log(cap2, person)
+
+        //ES6扩展语法
+        const cap3 = { ...person }
+        cap3['age'] = 22
+        console.log(cap3, person)
+
+        //利用 JSON 可以先将对象转成字符串的格式，然后再把它转成 JSON，从而实现复制
+        const wes = {
+            name: 'Wes',
+            age: 100,
+            social: {
+                twitter: '@wesbos',
+                facebook: 'wesbos.developer'
+            }
+        };
+
+        console.log(wes);
+
+        const dev = Object.assign({}, wes);
+
+        const dev2 = JSON.parse(JSON.stringify(wes));
+        console.log(dev, dev2)
+    </script>
+</body>
+
+</html>
