@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    div {
+      width: 100%;
+      padding: 100px;
+    }
+
+    .one {
+      background: thistle;
+    }
+
+    .two {
+      background: mistyrose;
+    }
+
+    .three {
+      background: coral;
+    }
+  </style>
+
+  <button></button>
+  <script>
+    let divs = document.querySelectorAll('div');
+    let one = document.querySelector('.one');
+    let two = document.querySelector('.two');
+    let three = document.querySelector('.three');
+
+    //once:true - 点击事件只能触发一次
+    //once:false - 点击事件可以触发多次（默认）
+
+    //capture:true - 捕获 事件传播由外向内
+    //capture:false - 冒泡 事件传播由内向外（默认）
+
+    //stopPropagation() 方法阻止捕获和冒泡阶段中当前事件的进一步传播
+
+    /*   divs.forEach(div => div.addEventListener('click', logText, {
+           once: false,
+           capture: false
+       }));*/
+
+    one.addEventListener('click', logText1, {
+      capture: true
+    });
+    two.addEventListener('click', logText2, {
+      capture: true
+    });
+    three.addEventListener('click', logText3, {
+      capture: true
+    });
+
+
+    function logText(e) {
+      console.log(this.classList.value);
+      // e.stopPropagation();
+    }
+
+    function logText1(e) {
+      console.log(this.classList.value);
+      // e.stopPropagation();
+    }
+
+    function logText2(e) {
+      console.log(this.classList.value);
+      e.stopPropagation();
+    }
+
+    function logText3(e) {
+      console.log(this.classList.value);
+      // e.stopPropagation();
+    }
+  </script>
+</body>
+
+</html>
